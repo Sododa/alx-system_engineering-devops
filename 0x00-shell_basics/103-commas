@@ -1,3 +1,2 @@
 #!/bin/bash
-ls -Ap | sed 's/\(.*\/\)/\1\//' | LC_ALL=C sort -k1.1,1.1 -k2 | tr '\n' ','; echo
-
+./list_files.sh
