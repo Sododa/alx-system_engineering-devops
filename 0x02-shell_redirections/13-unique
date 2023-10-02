@@ -1,2 +1,2 @@
 #!/bin/bash
-sort list | uniq -c | awk '$1 == 1 {print $2}
+cat list | tr ' ' '\n' | sort | uniq -c | awk '$1 == 1 {print $2}'
