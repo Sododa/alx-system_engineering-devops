@@ -1,14 +1,9 @@
 #!/usr/bin/env bash
+# Tells a story based on the contents of the `/etc/passwd` file.
 
-# Read /etc/passwd line by line
-while IFS=: read -r username password uid gid gecos home shell; do
-    # Extract user id info
-    uid_info=$(getent passwd "$username" | cut -d: -f5)
-
-    # Extract user id info from gecos field
-    IFS=',' read -r -a gecos_fields <<< "$gecos"
-    uid_info=${gecos_fields[0]}
-
-    # Display user information
-    echo "The user $username is part of the $gid gang, lives in $home and rides $shell. $uid's place is protected by the passcode $password, more info about the user here: $uid_info"
-done < /etc/passwd
+while IFS=':' read -r username password uid gid info home shell; do
+  echo "The user $username is part of the $gid gang,"\
+  "lives in $home and rides $shell."\
+  "$uid's place is protected by the passcode $password,"\
+  "more info about the user here: $info"
+done < "/etc/passwd"
