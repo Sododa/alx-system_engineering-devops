@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Displays BEST LOOP and must use until loop
+
+index=0
+
+until [ $index -eq 10 ]
+do
+  echo "Best School"
+  ((index++))
+done
