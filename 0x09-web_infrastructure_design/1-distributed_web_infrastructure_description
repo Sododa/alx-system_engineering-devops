@@ -1,0 +1,28 @@
+Load Balancer:
+
+Added to distribute incoming traffic across multiple servers to improve performance, scalability, and availability.
+HAProxy uses a round-robin distribution algorithm to evenly distribute requests among backend servers, ensuring balanced load distribution.
+Active-Active vs. Active-Passive Setup:
+
+In an Active-Active setup, all servers actively handle incoming requests simultaneously, distributing the load evenly among them.
+In an Active-Passive setup, one server (or set of servers) actively handles incoming requests while the others remain in standby mode, ready to take over if the active server fails.
+Database Primary-Replica (Master-Slave) Cluster:
+
+In a Primary-Replica cluster, one database server (Primary or Master) handles write operations (inserts, updates, deletes), while one or more replica servers (Replicas or Slaves) replicate data from the Primary and handle read operations.
+Replication ensures data redundancy, fault tolerance, and scalability, allowing for improved performance and availability.
+Difference between Primary and Replica Nodes:
+
+The Primary node handles write operations, making changes to the database, and replicates these changes to Replica nodes.
+Replica nodes handle read operations, serving read-only queries and providing redundancy in case the Primary node fails.
+Issues with the Infrastructure:
+Single Point of Failure (SPOF):
+
+The infrastructure lacks redundancy for critical components such as the load balancer, web server, and application server, making it vulnerable to outages and downtime.
+Security Issues (No Firewall, No HTTPS):
+
+Lack of firewall protection leaves the infrastructure vulnerable to unauthorized access, malicious attacks, and data breaches.
+Not using HTTPS for encrypted communication exposes sensitive data to potential eavesdropping and interception.
+No Monitoring:
+
+Without monitoring, it's challenging to track the performance, availability, and security of the infrastructure.
+Monitoring tools are essential for detecting and responding to issues proactively, ensuring optimal performance and uptime.

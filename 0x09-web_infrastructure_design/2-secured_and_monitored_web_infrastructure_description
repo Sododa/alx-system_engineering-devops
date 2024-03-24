@@ -1,0 +1,62 @@
+Load Balancer:
+
+Acts as the entry point for incoming traffic and distributes it across multiple servers.
+Terminates SSL/TLS connections and decrypts traffic before forwarding requests to backend servers.
+Web Servers (x2):
+
+Hosts the web application and serves web pages to clients.
+Configured with HTTPS to ensure encrypted communication between clients and servers.
+Application Servers (x2):
+
+Executes the application logic, processes dynamic content requests, and interacts with the database.
+Secured with firewalls to restrict unauthorized access and mitigate potential threats.
+Database Servers (x2):
+
+Stores and manages website data, such as user information, posts, etc.
+Utilizes SSL encryption for secure communication between servers and clients.
+Firewalls (x3):
+
+Placed around the infrastructure to monitor and control incoming and outgoing traffic.
+Act as a barrier against unauthorized access, malicious attacks, and potential security breaches.
+SSL Certificate:
+
+Installed on the load balancer to enable HTTPS encryption for www.foobar.com.
+Ensures secure transmission of sensitive information between clients and servers.
+Monitoring Clients (x3):
+
+Installed on each server to collect and send performance data to a central monitoring platform.
+Monitors server health, resource utilization, and network traffic to detect and troubleshoot issues proactively.
+Explanation:
+Firewalls:
+
+Firewalls are added to control network traffic, filter incoming and outgoing connections, and protect the infrastructure from unauthorized access and potential threats.
+HTTPS Traffic:
+
+Serving traffic over HTTPS ensures data integrity, confidentiality, and authenticity by encrypting communication between clients and servers. This prevents eavesdropping, tampering, and data theft.
+Monitoring:
+
+Monitoring is used to track the performance, availability, and security of the infrastructure in real-time.
+Monitoring tools collect data by deploying monitoring agents or clients on servers, which gather metrics and logs and transmit them to a centralized monitoring platform for analysis.
+Monitoring Web Server QPS:
+
+To monitor the web server's Query Per Second (QPS), you can set up monitoring agents to collect metrics related to incoming HTTP requests, response times, and server load.
+Monitoring tools can generate alerts or notifications when QPS exceeds predefined thresholds, indicating potential performance issues or traffic spikes.
+Issues:
+Terminating SSL at Load Balancer Level:
+
+Terminating SSL at the load balancer exposes decrypted traffic within the internal network, potentially compromising data security.
+Encrypting traffic end-to-end ensures data confidentiality and integrity throughout the entire communication path.
+Single MySQL Server for Writes:
+
+Having only one MySQL server capable of accepting writes creates a single point of failure and limits scalability.
+Implementing database replication and failover mechanisms can enhance fault tolerance and distribute write operations across multiple servers.
+Uniformity of Server Components:
+
+Having servers with identical components (database, web server, application server) increases vulnerability to widespread failures.
+Diversifying server components and distributing services across different servers can mitigate risks associated with component failures and security vulnerabilities.
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+Server (Physical or Virtual Machine):
+
+Acts as the foundation of the infrastructure, hosting various components of the web application.
+Provides computing resources (CPU, memory, storage) for running the services.
+Load Balancer (HAProxy) Cluster:
+
+Distributes incoming traffic across multiple servers to ensure high availability and scalability.
+Improves fault tolerance by evenly distributing the load and redirecting traffic away from unhealthy servers.
+Web Server (e.g., Nginx or Apache):
+
+Handles HTTP requests from clients and serves static content such as HTML, CSS, and images.
+Offloads the application server by serving static files directly to clients, improving overall performance and scalability.
+Application Server:
+
+Executes the application logic and processes dynamic content requests.
+Runs the server-side code responsible for generating dynamic web pages, handling user authentication, and interacting with the database.
+Database Server (e.g., MySQL or PostgreSQL):
+
+Stores and manages structured data required by the web application.
+Provides a reliable and efficient way to store, retrieve, and manipulate data, ensuring data integrity and consistency.
+Explanation:
+Load Balancer:
+
+Added to distribute incoming traffic across multiple servers in a cluster to ensure high availability and scalability.
+Prevents overload on individual servers by evenly distributing the load and redirecting traffic away from unhealthy or overloaded servers.
+Enhances fault tolerance and resilience by automatically detecting and routing around failed servers, minimizing downtime and service interruptions.
+Web Server:
+
+Separated from the application server to optimize resource utilization and improve performance.
+Handles static content delivery efficiently, freeing up resources on the application server to focus on processing dynamic content and application logic.
+Allows for easier scaling as static content can be served directly from the web server without impacting the application server's workload.
+Application Server:
+
+Dedicated to executing the application logic and handling dynamic content generation.
+Isolated from the web server to prevent resource contention and ensure efficient processing of dynamic requests.
+Enables scaling of the application tier independently from the web server tier, allowing for better resource allocation and performance optimization.
+Database Server:
+
+Separated from the application and web servers to improve security, scalability, and performance.
+Provides a centralized and reliable data storage solution for the web application, ensuring data integrity and consistency.
+Allows for efficient management of database resources and optimization of database performance without impacting other server components.

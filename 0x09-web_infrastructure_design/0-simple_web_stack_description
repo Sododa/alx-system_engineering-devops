@@ -1,0 +1,37 @@
+Server:
+
+A server is a computer system or software that provides functionality or services to other programs or devices, known as clients. In this context, it hosts the entire web infrastructure.
+Domain Name:
+
+A domain name is a human-readable address used to access websites. It serves as a memorable and recognizable way for users to navigate the internet.
+www DNS Record:
+
+The "www" in www.foobar.com is typically a subdomain representing the web service of the domain. In DNS, it's usually represented by a CNAME (Canonical Name) record, acting as an alias for the domain name itself or pointing to the IP address of the web server.
+Web Server:
+
+The web server (Nginx) handles HTTP requests from clients and serves static content. It also acts as a reverse proxy to forward dynamic requests to the application server.
+Application Server:
+
+The application server executes the application logic, processes dynamic content requests, and generates web pages dynamically. It interacts with the database to retrieve or store data required by the application.
+Database:
+
+The database (MySQL) stores and manages structured data required by the web application. It provides a reliable and efficient way to store, retrieve, and manipulate data, ensuring data integrity and consistency.
+Communication with User's Computer:
+
+The server communicates with the user's computer over the internet using the Hypertext Transfer Protocol (HTTP) or its secure variant, HTTPS. HTTP/HTTPS facilitates the exchange of web pages, files, and other resources between the server and the user's computer.
+Issues with the Infrastructure:
+Single Point of Failure (SPOF):
+
+The infrastructure relies on a single server, making it vulnerable to outages if the server fails. Introducing redundancy and failover mechanisms can mitigate this risk.
+Downtime during Maintenance:
+
+Performing maintenance tasks such as deploying new code or restarting the web server may result in downtime, disrupting service availability for users. Implementing strategies like load balancing and rolling updates can minimize downtime during maintenance activities.
+Cannot Scale with Incoming Traffic:
+
+The infrastructure may struggle to handle a sudden influx of traffic, leading to degraded performance or service disruptions. Scaling horizontally by adding more servers or vertically by upgrading hardware can address scalability issues and accommodate increased traffic demands.
+
+
+
+
+
+
