@@ -1,16 +1,25 @@
 #!/usr/bin/env bash
-# Installs nginx web server
+# Configures an Nginx server so that /redirect_me redirects to another page.
+# The redirection is configured as a "301 Moved Permanently"
 
-apt-get update
-apt-get install -y nginx
-echo "Hello World!" > /etc/nginx/html/index.html
+sudo apt-get update
+sudo apt-get install nginx -y
+ufw allow 'Nginx HTTP'
+
+sudo chown -R "$USER":"$USER" /var/www
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-available/default
+
+touch /var/www/html/index.nginx-debian.html
+echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+
 echo "server {
-    listen 80;
-    listen [::]:80 default_server;
-    root   /etc/nginx/html;
-    index  index.html;
-    location /redirect_me {
-        return 301 sododa.tech;
+     listen      80 default_server;
+     listen      [::]:80 default_server;
+     root        /var/www/html;
+     index       index.html index.htm;
+     location /redirect_me {
+        return 301 https://github.com/Sododa;
     }
 }" > /etc/nginx/sites-available/default
-service nginx restart
+
+sudo service nginx restart
