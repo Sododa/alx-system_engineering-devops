@@ -33,19 +33,19 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-frontend sododa-frontend
+frontend sododa-tech-frontend
         bind *:80
         mode http
         http-request redirect scheme https code 301 unless { ssl_fc }
         http-request set-header X_Forwarded-Proto http
-        default_backend sododa-backend
+        default_backend sododa-tech-backend
 
-frontend sododa-frontend-https
-        bind *:443 ssl crt /etc/haproxy/certs/sododa.tech.pem
+frontend sododa-tech-frontend-https
+        bind *:443 ssl crt /etc/haproxy/certs/www.sododa.tech.pem
         http-request set-header X-Forwarded-Proto https
-        default_backend sododa-backend
+        default_backend sododa-tech-backend
 
-backend sododa-backend
+backend sododa-tech-backend
         balance roundrobin
         server 531513-web-01 54.237.33.216:80 check
         server 531513-web-02 54.236.54.40:80 check
