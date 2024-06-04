@@ -20,6 +20,3 @@ def number_of_subscribers(subreddit):
         else:
             # Invalid subreddit or request error
             return 0
-    except requests.RequestException as e:
-        # Handle any request exceptions (e.g., network issues)
-        return 0
