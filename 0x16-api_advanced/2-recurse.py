@@ -1,52 +1,32 @@
 #!/usr/bin/python3
-"""
-Write a recursive function that queries the Reddit API
-and returns a list containing the titles of all hot articles
-for a given subreddit. If no results are found for the
-given subreddit, the function should return None.
-
-Hint: The Reddit API uses pagination for separating pages of responses.
-
-Requirements:
-
-Prototype: def recurse(subreddit, hot_list=[])
-Note: You may change the prototype, but it must
-be able to be called with just a subreddit supplied.
-AKA you can add a counter, but it must work without
-supplying a starting value in the main.
-
-If not a valid subreddit, return None.
-NOTE: Invalid subreddits may return a redirect to search results.
-Ensure that you are not following redirects.
-
-Your code will NOT pass if you are using a loop and not
-recursively calling the function! This /can/ be done with a
-loop but the point is to use a recursive function. :)
-"""
+"""Module that consumes the Reddit API and returns a list containing the
+titles of all hot articles for a given subreddit."""
+import requests
 
 
-def recurse(subreddit, hot_list=[], after=None, count=0):
+def recurse(subreddit, hot_list=[], n=0, after=None):
+    """ queries the Reddit API and returns a list containing the titles of
+    all hot articles for a given subreddit
+
+    The Reddit API uses pagination for separating pages of responses.
+    If not a valid subreddit, return None.
+
+    Args:
+        subreddit (str): subreddit.
+        hot_list (list, optional): list of titles. Defaults to [].
+
+    Returns:
+        list: list of titles.
     """
-    queries the Reddit API
-    returns list of titles of hot posts for subreddit
-    """
-    import json
-    import requests
-    if after is None:
-        sub_URL = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
-    else:
-        sub_URL = 'https://www.reddit.com/r/{}/hot.json?after={}'.format(
-            subreddit, after)
-    subreddit_info = requests.get(sub_URL,
-                                  headers={"user-agent": "user"},
-                                  allow_redirects=False).json()
-    if "data" not in subreddit_info and hot_list == []:
-        return None
-    children = subreddit_info.get("data").get("children")
-    for child in children:
-        hot_list.append(child.get("data").get("title"))
-        count += 1
-    after = subreddit_info.get("data").get("after")
-    if after is None:
+    url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
+    headers = {'user-agent': 'custom'}
+    r = requests.get(url, headers=headers, allow_redirects=False)
+    if r.status_code == 200:
+        r = r.json()
+        for post in r.get('data').get('children'):
+            hot_list.append(post.get('data').get('title'))
+        if r.get('data').get('after'):
+            recurse(subreddit, hot_list)
         return hot_list
-    return (recurse(subreddit, hot_list, after, count))
+    else:
+        return None

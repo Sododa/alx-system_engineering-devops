@@ -1,35 +1,35 @@
 #!/usr/bin/python3
-"""
-Write a function that queries the Reddit API
-and returns the number of subscribers
-(not active users, total subscribers) for a given subreddit.
-If an invalid subreddit is given, the function should return 0.
-
-Hint: No authentication is necessary for most features of the Reddit API.
-If you’re getting errors related to Too Many Requests,
-ensure you’re setting a custom User-Agent.
-
-Requirements:
-Prototype: def number_of_subscribers(subreddit)
-NOTE: Invalid subreddits may return a redirect to search results.
-Ensure that you are not following redirects.
-"""
+"""Module that consumes the Reddit API and returns the number of subscribers"""
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """
-    If not a valid subreddit, return 0.
-    """
-    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-    user_agent = 'User Agent'
-    headers = {
-        'User-Agent': user_agent
-    }
+    """Queries the Reddit API and returns the number of subscribers (not
+    active users, total subscribers) for a given subreddit.
 
-    response = requests.get(url, headers=headers, allow_redirects=False)
-    if response.status_code == 200:
-        result = response.json().get('data')
-        return result.get('subscribers')
-    else:
-        return 0
+    If not a valid subreddit, return 0.
+    Invalid subreddits may return a redirect to search results. Ensure that
+    you are not following redirects.
+
+    Args:
+        subreddit (str): subreddit
+
+    Returns:
+        int: number of subscribers
+    """
+    base_url = 'https://www.reddit.com/r/'
+
+    url = '{}{}/about.json'.format(base_url, subreddit)
+    headers = {
+        'User-Agent':
+        'Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) \
+        Gecko/20100401 Firefox/3.6.3 (FM Scene 4.6.1)'
+    }
+    results = requests.get(
+        url,
+        headers=headers,
+        allow_redirects=False
+    )
+    if results.status_code == 200:
+        return results.json()['data']['subscribers']
+    return 0
