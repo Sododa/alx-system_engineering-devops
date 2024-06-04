@@ -20,18 +20,14 @@ def number_of_subscribers(subreddit):
     base_url = 'https://www.reddit.com/r/'
     url = f"{base_url}{subreddit}/about.json"
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows; U; Windows NT 5.1)'
+        'User-Agent': 'Mozilla/5.0 (Windows; U; Windows NT 5.1) Firefox/3.6.3'
     }
     try:
-        # Make the request to the Reddit API
         response = requests.get(url, headers=headers, allow_redirects=False)
-        # Check if the subreddit is valid and the request was successful
         if response.status_code == 200:
             data = response.json()
             return data['data']['subscribers']
         else:
-            # Invalid subreddit or request error
             return 0
     except requests.RequestException:
-        # Handle any request exceptions (e.g., network issues)
         return 0
