@@ -41,21 +41,3 @@ This incident highlighted the importance of thorough testing and validation of d
 Diagram
 
 Here's a simple diagram illustrating the cascade of failures that led to the incident:
- +---------------+
-          |  Misconfigured  |
-          |  Database Query  |
-          +---------------+
-                  |
-                  |
-                  v
-          +---------------+
-          |  Recursive Loop  |
-          |  Consumes Resources  |
-          +---------------+
-                  |
-                  |
-                  v
-          +---------------+
-          |  Database Overwhelmed  |
-          |  Slow Load Times & Errors  |
-          +---------------+
